@@ -4,6 +4,7 @@ const weatherForm = document.querySelector('form')
 const search =  document.querySelector('input')
 const messageOne = document.getElementById('message-1')
 const messageTwo = document.getElementById('message-2')
+const messageThree = document.getElementById('message-3')
 
 
 weatherForm.addEventListener('submit', (event)=>{
@@ -13,12 +14,12 @@ weatherForm.addEventListener('submit', (event)=>{
     const location = search.value
     fetch('/weather?address='+location).then(resp => {
         resp.json().then(data => {
-            console.log(data)
             if(data.error){
                 messageOne.innerText = data.error
             }else{
                 messageOne.innerText = data.location
-                messageTwo.innerText = `It is currently ${data.temperature} degrees and ${data.forecast.toLowerCase()}!`
+                messageTwo.innerText = `It is currently ${data.temperature} degrees and feels like  ${data.feelsLike}! You can expect wind speeds of ${data.windSpeed} mph. `
+                messageThree.innerText = data.forecast.toLowerCase()
             }
         })
     })

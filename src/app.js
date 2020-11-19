@@ -60,6 +60,8 @@ app.get('/weather', (req, res)=>{
             if(error){return console.log(error)}
             res.send({
                 forecast: forecastData.weather_descriptions[0],
+                feelsLike: forecastData.feelslike,
+                windSpeed: forecastData.wind_speed,
                 address: req.query.address,
                 temperature: forecastData.temperature,
                 location
